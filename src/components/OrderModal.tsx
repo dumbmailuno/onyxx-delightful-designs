@@ -25,7 +25,7 @@ const OrderModal = ({ open, onOpenChange, item }: OrderModalProps) => {
 
   if (!item) return null;
 
-const handleOrder = () => {'
+const handleOrder = () => {
   const phoneNumber = "2347032485531"; 
   const message = `Hello Onyxx! I'd like to order:
 
