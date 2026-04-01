@@ -25,10 +25,19 @@ const OrderModal = ({ open, onOpenChange, item }: OrderModalProps) => {
 
   if (!item) return null;
 
-const handleOrder = () => {
-  const message = `Hello Onyxx! I'd like to order:\n\n🎂 *${item.name}*\n📝 ${item.description}\n💰 Price: ${item.price}\n📦 Quantity: ${quantity}\n\nPlease confirm availability. Thank you!`;
+const handleOrder = () => {'
+  const phoneNumber = "2347032485531"; 
+  const message = `Hello Onyxx! I'd like to order:
+
+*${item.name}*
+${item.description}
+Price: ${item.price}
+Quantity: ${quantity}
+
+Please confirm availability. Thank you!`;
+
   window.open(
-    `https://wa.me/2347032485531?text=${encodeURIComponent(message)}`,
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 
