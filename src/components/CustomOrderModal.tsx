@@ -25,6 +25,8 @@ const recommendations = [
   { label: "Graduation Cake", emoji: "🎓" },
 ];
 
+const phoneNumber = "2347032485531";
+
 const CustomOrderModal = ({ open, onOpenChange }: CustomOrderModalProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -34,23 +36,27 @@ const CustomOrderModal = ({ open, onOpenChange }: CustomOrderModalProps) => {
     );
   };
 
-  const handleOrder = () => {
-    const items = selected.length > 0 ? selected.join(", ") : "Custom order";
-    const message = `Hello Onyxx! I'd like to place a custom order:\n\n📋 *Items:* ${items}\n\nPlease share available options and pricing. Thank you!`;
-    window.open(
-      `https://api.whatsapp.com/message/5L6YIR7MJBVWM1?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-    onOpenChange(false);
-    setSelected([]);
-  };
+ const handleOrder = () => {
+  const items = selected.length > 0 ? selected.join(", ") : "Custom order";
+  const message = `Hello Onyxx! I'd like to place a custom order:
 
-  const handleFreestyle = () => {
-    window.open("https://api.whatsapp.com/message/5L6YIR7MJBVWM1", "_blank");
-    onOpenChange(false);
-    setSelected([]);
-  };
+📋 *Items:* ${items}
 
+Please share available options and pricing. Thank you!`;
+
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+  onOpenChange(false);
+  setSelected([]);
+};
+
+const handleFreestyle = () => {
+  window.open(`https://wa.me/${phoneNumber}`, "_blank");
+  onOpenChange(false);
+  setSelected([]);
+};
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg bg-card border-border rounded-xl">
