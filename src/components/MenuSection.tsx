@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import MenuItem from "./MenuItem";
+import OrderModal from "./OrderModal";
+import CustomOrderModal from "./CustomOrderModal";
 
 import cakeChocolate from "@/assets/cake-chocolate.jpg";
 import cakeRedvelvet from "@/assets/cake-redvelvet.jpg";
@@ -79,6 +81,9 @@ const menuItems = [
 
 const MenuSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [selectedItem, setSelectedItem] = useState<typeof menuItems[0] | null>(null);
+  const [orderOpen, setOrderOpen] = useState(false);
+  const [customOpen, setCustomOpen] = useState(false);
 
   const filtered = activeCategory === "All"
     ? menuItems
@@ -114,7 +119,7 @@ const MenuSection = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 text-sm font-body tracking-wider uppercase transition-all duration-300 rounded-none ${
+              className={`px-6 py-2.5 text-sm font-body tracking-wider uppercase transition-all duration-300 rounded-full ${
                 activeCategory === cat
                   ? "bg-gold-gradient text-primary-foreground font-semibold"
                   : "border border-border text-muted-foreground hover:border-gold/40 hover:text-foreground"
@@ -128,7 +133,15 @@ const MenuSection = () => {
         {/* Menu grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filtered.map((item, i) => (
-            <MenuItem key={item.name} {...item} index={i} />
+            <MenuItem
+              key={item.name}
+              {...item}
+              index={i}
+              onClick={() => {
+                setSelectedItem(item);
+                setOrderOpen(true);
+              }}
+            />
           ))}
         </div>
 
@@ -139,7 +152,7 @@ const MenuSection = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-block border border-gold/20 p-8 sm:p-12 shimmer">
+          <div className="inline-block border border-gold/20 p-8 sm:p-12 rounded-xl shimmer">
             <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-2">
               Can't find what you need?
             </p>
@@ -150,17 +163,22 @@ const MenuSection = () => {
               From corporate events to intimate celebrations — tell us your vision 
               and we'll bring it to life.
             </p>
-            <a
-              href="https://wa.me/2347032485531?text=Hello%20Onyxx!%20I'd%20like%20to%20place%20a%20custom%20order."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity"
+            <button
+              onClick={() => setCustomOpen(true)}
+              className="inline-flex items-center justify-center px-8 py-3 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity rounded-full"
             >
               Request Custom Order
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
+
+      <OrderModal
+        open={orderOpen}
+        onOpenChange={setOrderOpen}
+        item={selectedItem}
+      />
+      <CustomOrderModal open={customOpen} onOpenChange={setCustomOpen} />
     </section>
   );
 };
