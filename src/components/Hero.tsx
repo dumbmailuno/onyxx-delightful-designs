@@ -2,6 +2,14 @@ import { motion } from "framer-motion";
 import heroCake from "@/assets/hero-cake.jpg";
 
 const Hero = () => {
+  const scrollToMenu = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const menu = document.getElementById("menu");
+    if (menu) {
+      menu.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-end pb-20 overflow-hidden">
       {/* Background Image */}
@@ -61,15 +69,16 @@ const Hero = () => {
           >
             <a
               href="#menu"
-              className="inline-flex items-center justify-center px-8 py-4 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase rounded-none hover:opacity-90 transition-opacity"
+              onClick={scrollToMenu}
+              className="inline-flex items-center justify-center px-8 py-4 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase rounded-full hover:opacity-90 transition-opacity"
             >
               Explore Menu
             </a>
             <a
-              href="https://wa.me/2347032485531"
+              href="https://api.whatsapp.com/message/5L6YIR7MJBVWM1"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 border border-gold/40 text-gold font-body font-medium text-sm tracking-wider uppercase rounded-none hover:bg-gold/10 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 border border-gold/40 text-gold font-body font-medium text-sm tracking-wider uppercase rounded-full hover:bg-gold/10 transition-colors"
             >
               Order on WhatsApp
             </a>

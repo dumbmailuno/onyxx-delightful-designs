@@ -17,6 +17,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -39,16 +48,17 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-muted-foreground font-body text-sm tracking-wider uppercase hover:text-gold transition-colors"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="https://wa.me/2347032485531"
+            href="https://api.whatsapp.com/message/5L6YIR7MJBVWM1"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2.5 bg-gold-gradient text-primary-foreground font-body font-semibold text-xs tracking-wider uppercase hover:opacity-90 transition-opacity"
+            className="px-6 py-2.5 bg-gold-gradient text-primary-foreground font-body font-semibold text-xs tracking-wider uppercase hover:opacity-90 transition-opacity rounded-full"
           >
             Order Now
           </a>
@@ -78,17 +88,17 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-foreground font-body text-lg tracking-wider"
                 >
                   {link.label}
                 </a>
               ))}
               <a
-                href="https://wa.me/2347032485531"
+                href="https://api.whatsapp.com/message/5L6YIR7MJBVWM1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 px-6 py-3 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase text-center"
+                className="mt-2 px-6 py-3 bg-gold-gradient text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase text-center rounded-full"
               >
                 Order Now
               </a>

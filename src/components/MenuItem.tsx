@@ -7,16 +7,18 @@ interface MenuItemProps {
   price: string;
   tag?: string;
   index: number;
+  onClick?: () => void;
 }
 
-const MenuItem = ({ image, name, description, price, tag, index }: MenuItemProps) => {
+const MenuItem = ({ image, name, description, price, tag, index, onClick }: MenuItemProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group relative overflow-hidden bg-card rounded-sm"
+      className="group relative overflow-hidden bg-card rounded-lg cursor-pointer"
+      onClick={onClick}
     >
       <div className="aspect-square overflow-hidden">
         <img
@@ -28,7 +30,7 @@ const MenuItem = ({ image, name, description, price, tag, index }: MenuItemProps
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         {tag && (
-          <span className="absolute top-4 left-4 px-3 py-1 bg-gold-gradient text-primary-foreground text-xs font-body font-semibold tracking-wider uppercase">
+          <span className="absolute top-4 left-4 px-3 py-1 bg-gold-gradient text-primary-foreground text-xs font-body font-semibold tracking-wider uppercase rounded-md">
             {tag}
           </span>
         )}

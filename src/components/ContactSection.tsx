@@ -55,9 +55,9 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
-                className="flex gap-5 p-6 border border-border hover:border-gold/30 transition-colors group"
+                className="flex gap-5 p-6 border border-border rounded-lg hover:border-gold/30 transition-colors group"
               >
-                <div className="w-12 h-12 flex items-center justify-center border border-gold/30 group-hover:bg-gold/10 transition-colors shrink-0">
+                <div className="w-12 h-12 flex items-center justify-center border border-gold/30 rounded-lg group-hover:bg-gold/10 transition-colors shrink-0">
                   <item.icon className="w-5 h-5 text-gold" />
                 </div>
                 <div>
@@ -82,7 +82,7 @@ const ContactSection = () => {
             ))}
           </div>
 
-          {/* WhatsApp CTA & map placeholder */}
+          {/* Map & WhatsApp CTA */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -90,27 +90,25 @@ const ContactSection = () => {
             transition={{ duration: 0.6 }}
             className="flex flex-col justify-between"
           >
-            {/* Map embed */}
-            <div className="w-full aspect-[4/3] bg-secondary mb-6 overflow-hidden">
+            {/* OpenStreetMap embed */}
+            <div className="w-full aspect-[4/3] bg-secondary mb-6 overflow-hidden rounded-lg">
               <iframe
                 title="Onyxx Cakes Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.5!2d7.2!3d9.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDknMDAuMCJOIDfCsDEyJzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=7.18%2C9.13%2C7.22%2C9.17&layer=mapnik&marker=9.15%2C7.20"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                className="opacity-80 hover:opacity-100 transition-opacity duration-500"
               />
             </div>
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/2347032485531?text=Hello%20Onyxx!%20I'd%20like%20to%20make%20an%20order."
+              href="https://api.whatsapp.com/message/5L6YIR7MJBVWM1"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full px-8 py-5 bg-[#25D366] text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-3 w-full px-8 py-5 bg-[#25D366] text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity rounded-full"
             >
               <MessageCircle className="w-5 h-5" />
               Order via WhatsApp
